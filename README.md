@@ -20,7 +20,7 @@ Technical interviews therefore often require you to explain how the merge and qu
 
 > **ASIDE:**
 > Recall that Python uses the [TimSort](https://en.wikipedia.org/wiki/Timsort) algorithm.
-> TimSort was named after the inventor [Tim Peters](https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer\)),
+> TimSort was named after the inventor [Tim Peters](https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)),
 > who invented it specifically for python.
 > Tim is one of the most influential early python programmers after Python's [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 > Besides TimSort, he is most famous for developing the [Zen of Python](https://en.wikipedia.org/wiki/Zen_of_Python),
