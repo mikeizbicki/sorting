@@ -36,7 +36,7 @@ and therefore will be much faster than anything you are likely to write.
 
 So why are you implementing them in this assignment?
 The divide-and-conquer strategy used in merge/quick sort turns out to be the most fundamental tool for building your own fast algorithms,
-and the main purpose of this assignment is to practice this divde-and-conquer programming technique.
+and the main purpose of this assignment is to practice this divide-and-conquer programming technique.
 Next week, we will explore this strategy for massively parallel data analysis of multi-terabyte twitter data.
 If you take CS148 (graph algorithms), you will explore many more variations of the divide and conquer technique for developing fast algorithms.
 Data science tasks frequently rely on matrix multiplication and the fourier transform,
