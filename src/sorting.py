@@ -8,6 +8,10 @@ which controls how the elements of the list should be compared against each othe
 If cmp(a, b) returns -1, then a < b;
 if cmp(a, b) returns  1, then a > b;
 if cmp(a, b) returns  0, then a == b.
+
+Every sorting function in this file also takes a boolean `reverse` parameter.
+When reverse=True, the elements are sorted in the opposite order,
+equivalently, the result of every call to cmp is negated.
 '''
 
 import random
@@ -20,6 +24,8 @@ def cmp_standard(a, b):
     -1
     >>> cmp_standard(523, 322)
     1
+    >>> cmp_standard(322, 322)
+    0
     '''
     if a < b:
         return -1
@@ -36,6 +42,8 @@ def cmp_reverse(a, b):
     1
     >>> cmp_reverse(523, 322)
     -1
+    >>> cmp_reverse(322, 322)
+    0
     '''
     if a < b:
         return 1
@@ -52,11 +60,13 @@ def cmp_last_digit(a, b):
     1
     >>> cmp_last_digit(523, 322)
     1
+    >>> cmp_last_digit(120, 121)
+    -1
     '''
     return cmp_standard(a % 10, b % 10)
 
 
-def _merged(xs, ys, cmp=cmp_standard):
+def _merged(xs, ys, cmp=cmp_standard, reverse=False):
     '''
     Assumes that both xs and ys are sorted,
     and returns a new list containing the elements of both xs and ys.
@@ -76,10 +86,12 @@ def _merged(xs, ys, cmp=cmp_standard):
 
     >>> _merged([1, 3, 5], [2, 4, 6])
     [1, 2, 3, 4, 5, 6]
+    >>> _merged([5, 3, 1], [6, 4, 2], reverse=True)
+    [6, 5, 4, 3, 2, 1]
     '''
 
 
-def merge_sorted(xs, cmp=cmp_standard):
+def merge_sorted(xs, cmp=cmp_standard, reverse=False):
     '''
     Merge sort is the standard O(n log n) sorting algorithm.
     Recall that the merge sort pseudo code is:
@@ -94,10 +106,15 @@ def merge_sorted(xs, cmp=cmp_standard):
 
     You should return a sorted version of the input list xs.
     You should not modify the input list xs in any way.
+
+    >>> merge_sorted([3, 1, 2])
+    [1, 2, 3]
+    >>> merge_sorted([3, 1, 2], reverse=True)
+    [3, 2, 1]
     '''
 
 
-def quick_sorted(xs, cmp=cmp_standard):
+def quick_sorted(xs, cmp=cmp_standard, reverse=False):
     '''
     Quicksort is like mergesort,
     but it uses a different strategy to split the list.
@@ -119,10 +136,15 @@ def quick_sorted(xs, cmp=cmp_standard):
 
     You should return a sorted version of the input list xs.
     You should not modify the input list xs in any way.
+
+    >>> quick_sorted([3, 1, 2])
+    [1, 2, 3]
+    >>> quick_sorted([3, 1, 2], reverse=True)
+    [3, 2, 1]
     '''
 
 
-def quick_sort(xs, cmp=cmp_standard):
+def quick_sort(xs, cmp=cmp_standard, reverse=False):
     '''
     The main advantage of quick_sort is that it can be implemented "in-place".
     This means that no extra lists are allocated,
@@ -139,4 +161,13 @@ def quick_sort(xs, cmp=cmp_standard):
     (https://en.wikipedia.org/wiki/Quicksort#Algorithm)
     to implement quick_sort as an in-place algorithm.
     You should directly modify the input xs variable instead of returning a copy of the list.
+
+    >>> xs = [3, 1, 2]
+    >>> quick_sort(xs)
+    >>> xs
+    [1, 2, 3]
+    >>> xs = [3, 1, 2]
+    >>> quick_sort(xs, reverse=True)
+    >>> xs
+    [3, 2, 1]
     '''

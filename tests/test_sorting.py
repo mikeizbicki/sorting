@@ -36,6 +36,14 @@ def test___merged_cmp1(str1, str2):
     assert _merged(str1_sorted, str2_sorted, cmp=cmp_reverse) == str12_sorted
 
 
+@given(str1=ints, str2=ints)
+def test___merged_reverse(str1, str2):
+    str1_sorted = sorted(str1, reverse=True)
+    str2_sorted = sorted(str2, reverse=True)
+    str12_sorted = sorted(str1 + str2, reverse=True)
+    assert _merged(str1_sorted, str2_sorted, reverse=True) == str12_sorted
+
+
 @given(str1=ints)
 def test__merge_sorted(str1):
     assert merge_sorted(list(str1)) == sorted(str1)
@@ -63,6 +71,11 @@ def test__merge_sorted_cmp2(str1):
 
 
 @given(str1=ints)
+def test__merge_sorted_reverse(str1):
+    assert merge_sorted(list(str1), reverse=True) == sorted(str1, reverse=True)
+
+
+@given(str1=ints)
 def test__quick_sorted(str1):
     assert quick_sorted(list(str1)) == sorted(str1)
 
@@ -81,8 +94,27 @@ def test__quick_sorted_cmp2(str1):
 
 
 @given(str1=ints)
+def test__quick_sorted_reverse(str1):
+    assert quick_sorted(list(str1), reverse=True) == sorted(str1, reverse=True)
+
+
+@given(str1=ints)
 def test__quick_sorted_memory(str1):
     str1_copy = copy.deepcopy(str1)
     str1 = list(str1)
     quick_sorted(str1)
     assert str1
+
+
+@given(str1=ints)
+def test__quick_sort(str1):
+    str1 = list(str1)
+    quick_sort(str1)
+    assert str1 == sorted(str1)
+
+
+@given(str1=ints)
+def test__quick_sort_reverse(str1):
+    str1 = list(str1)
+    quick_sort(str1, reverse=True)
+    assert str1 == sorted(str1, reverse=True)
