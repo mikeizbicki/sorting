@@ -2,6 +2,8 @@
 [![](https://github.com/mikeizbicki/sorting/workflows/tests-sorting/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests-sorting)
 [![](https://github.com/mikeizbicki/sorting/workflows/tests-leetcode/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests-leetcode)
 
+<img src=img/why.jpg width=300px />
+
 You will implement the merge and quick sort algorithms from class,
 and several leetcode problems.
 
@@ -17,12 +19,22 @@ Given a dataset, the first step of processing is almost always to sort the data.
 This allows efficient lookups via binary search,
 but it even makes sequential search significantly faster due to an optimization in modern CPUs called "branch prediction".
 (See [the most upvoted stackoverflow question of all time](https://stackoverflow.com/questions/11227809/why-is-processing-a-sorted-array-faster-than-processing-an-unsorted-array) for details.)
-Technical interviews therefore often require you to explain how the merge and quicksort algorithms work.
+
+Technical interviews rarely ask you to *implement* sorting algorithms.
+Instead, they ask you to *use* sorting algorithms in a clever way.
+In the real world, we always use the built in python sorting function
+because it is highly optimized and very fast.
+
+<img src=img/drake.jpg width=300px />
 
 > **ASIDE:**
 > Recall that Python uses the [TimSort](https://en.wikipedia.org/wiki/Timsort) algorithm.
 > TimSort was named after the inventor [Tim Peters](https://en.wikipedia.org/wiki/Tim_Peters_(software_engineer)),
 > who invented it specifically for python.
+> Here's a picture of him:
+>
+> <img src=img/timpeters.jpg width=300px />
+>
 > Tim is one of the most influential early python programmers after Python's [BDFL](https://en.wikipedia.org/wiki/Benevolent_dictator_for_life) [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 > Besides TimSort, he is most famous for developing the [Zen of Python](https://en.wikipedia.org/wiki/Zen_of_Python),
 > which is a collection of sayings describing python's guiding philosophy.
@@ -30,6 +42,9 @@ Technical interviews therefore often require you to explain how the merge and qu
 > ```
 > >>> import this
 > ```
+> Someone else then came along and made this fun cartoon explanation:
+>
+> <img src=img/zen.jpg width=400px />
 
 ## Tasks
 
