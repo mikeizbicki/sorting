@@ -9,6 +9,8 @@ it will also help you understand the versatility of sorting.
 
 For every problem, I have provided both a hint and
 a key/cmp function that will give you a good sorted order.
+You should not implement the actual sort here;
+you are welcome to use built-in functions or the functions in sorting.py
 '''
 
 
