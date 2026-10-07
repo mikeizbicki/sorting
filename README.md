@@ -1,5 +1,6 @@
 # Sorting
-[![](https://github.com/mikeizbicki/sorting/workflows/tests/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests)
+[![](https://github.com/mikeizbicki/sorting/workflows/tests-sorting/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests-sorting)
+[![](https://github.com/mikeizbicki/sorting/workflows/tests-leetcode/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests-leetcode)
 
 You will implement the merge and quick sort algorithms.
 

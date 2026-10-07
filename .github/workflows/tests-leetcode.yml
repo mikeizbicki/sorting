@@ -1,4 +1,4 @@
-name: tests
+name: tests-leetcode
 on:
   push:
     branches: ['*']
@@ -23,7 +23,7 @@ jobs:
       - name: Run linter
         run: |
           pip3 install flake8 pep8-naming
-          flake8 sorting.py --ignore=E501
+          flake8 src/ --ignore=E501
       - name: Run tests
         run: |
-          python -m pytest
+          python -m pytest tests/test_leetcode.py
