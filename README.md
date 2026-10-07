@@ -2,7 +2,8 @@
 [![](https://github.com/mikeizbicki/sorting/workflows/tests-sorting/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests-sorting)
 [![](https://github.com/mikeizbicki/sorting/workflows/tests-leetcode/badge.svg)](https://github.com/mikeizbicki/sorting/actions?query=workflow%3Atests-leetcode)
 
-You will implement the merge and quick sort algorithms.
+You will implement the merge and quick sort algorithms from class,
+and several leetcode problems.
 
 **Learning Objectives:**
 
@@ -29,18 +30,6 @@ Technical interviews therefore often require you to explain how the merge and qu
 > ```
 > >>> import this
 > ```
-
-In the real world, you should never implement your own sorting algorithm.
-The algorithms built-in to standard libraries are highly optimized by highly skilled engineers,
-and therefore will be much faster than anything you are likely to write.
-
-So why are you implementing them in this assignment?
-The divide-and-conquer strategy used in merge/quick sort turns out to be the most fundamental tool for building your own fast algorithms,
-and the main purpose of this assignment is to practice this divde-and-conquer programming technique.
-Next week, we will explore this strategy for massively parallel data analysis of multi-terabyte twitter data.
-If you take CS148 (graph algorithms), you will explore many more variations of the divide and conquer technique for developing fast algorithms.
-Data science tasks frequently rely on matrix multiplication and the fourier transform,
-and the fastest versions of these algorithms are implemented via divide and conquer.
 
 ## Tasks
 
