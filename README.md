@@ -4,8 +4,8 @@
 
 <img src=img/why.jpg width=300px />
 
-You will implement the merge and quick sort algorithms from class,
-and several leetcode problems.
+You will lightly modify the merge and quick sort algorithms from class.
+You will also implement several leetcode problems.
 
 **Learning Objectives:**
 
