@@ -124,7 +124,6 @@ def quick_sorted(xs, cmp=cmp_standard):
 
 def quick_sort(xs, cmp=cmp_standard):
     '''
-    EXTRA CREDIT:
     The main advantage of quick_sort is that it can be implemented "in-place".
     This means that no extra lists are allocated,
     or that the algorithm uses Theta(1) additional memory.
