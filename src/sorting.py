@@ -46,11 +46,6 @@ def cmp_reverse(a, b):
     >>> cmp_reverse(322, 322)
     0
     '''
-    if a < b:
-        return 1
-    if b < a:
-        return -1
-    return 0
 
 
 def cmp_invert(cmp):
@@ -94,12 +89,9 @@ def cmp_last_digit(a, b):
 
 def cmp_nan_last(a, b):
     '''
-    Used for sorting data that contains missing values, and puts every
-    missing value at the *end* of the list.
-
-    NaN stands for "not a number" and is the float value that python uses
-    to represent a missing value. It shows up whenever an operation has an
-    undefined result:
+    NaN stands for "not a number".
+    It is the float value that python uses to represent a missing or error value.
+    It shows up whenever an operation has an undefined result:
 
     >>> float('inf') - float('inf')
     nan
@@ -118,9 +110,8 @@ def cmp_nan_last(a, b):
     and reading a csv file produces them for every empty cell),
     so we need a comparator that gives NaN a fixed position in the sort order.
 
-    This comparator sorts all NaN values last and sorts all other values
-    with cmp_standard, which is the same convention as
-    pandas' `na_position='last'`.
+    This comparator sorts all NaN values last and
+    sorts all other values  with cmp_standard.
 
     >>> cmp_nan_last(1, 2)
     -1
@@ -142,28 +133,21 @@ def cmp_nan_last(a, b):
 
 def cmp_nan_first(a, b):
     '''
-    Used for sorting data that contains missing values, and puts every
-    missing value at the *front* of the list,
-    which is the same convention as pandas' `na_position='first'`.
-
-    This comparator is defined by inverting cmp_nan_last.
-    Inverting an existing comparator is easier than writing a second copy
-    of the NaN logic, but note that inverting also reverses the order of
-    the non-NaN values, so this comparator sorts those values from
-    highest to lowest.
+    This is *almost* the inverse of cmp_nan_last.
+    It puts all nan values at the front,
+    but maintains the cmp_standard ordering for non-nan values.
 
     >>> cmp_nan_first(float('nan'), 2)
     -1
     >>> cmp_nan_first(2, float('nan'))
     1
     >>> cmp_nan_first(1, 2)
-    1
-    >>> cmp_nan_first(2, 1)
     -1
+    >>> cmp_nan_first(2, 1)
+    1
     >>> cmp_nan_first(float('nan'), float('nan'))
     0
     '''
-    return cmp_invert(cmp_nan_last)(a, b)
 
 
 def _natural_chunks(s):
@@ -201,9 +185,7 @@ def cmp_natural(a, b):
     >>> cmp_standard('file10', 'file2')
     -1
 
-    This is a constant annoyance when sorting file names, dataframe column
-    names, and anything else indexed by a string like `column_10`,
-    and it is both wrong and surprising to users.
+    This is a constant annoyance when sorting file names.
     This comparator fixes the problem by comparing the digit chunks of the
     strings as numbers and the remaining chunks as strings.
 
@@ -308,10 +290,10 @@ def quick_sorted(xs, cmp=cmp_standard, reverse=False):
     [1, 2, 3]
     >>> quick_sorted([3, 1, 2], reverse=True)
     [3, 2, 1]
-    >>> quick_sorted([float('nan'), 3, 1], cmp=cmp_nan_last)
-    [1, 3, nan]
-    >>> quick_sorted([float('nan'), 1, 2], cmp=cmp_nan_first)
-    [nan, 2, 1]
+    >>> quick_sorted([float('nan'), 1, 5, 2, 3], cmp=cmp_nan_last)
+    [1, 2, 3, 5, nan]
+    >>> quick_sorted([float('nan'), 1, 5, 2, 3], cmp=cmp_nan_first)
+    [nan, 1, 2, 3, 5]
     '''
 
 

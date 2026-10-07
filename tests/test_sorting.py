@@ -139,25 +139,6 @@ def test__merge_sorted_inverted(str1):
     )
 
 
-def test__cmp_nan_last():
-    nan = float('nan')
-    assert cmp_nan_last(1, 2) == -1
-    assert cmp_nan_last(2, 1) == 1
-    assert cmp_nan_last(1, 1) == 0
-    assert cmp_nan_last(nan, 1) == 1
-    assert cmp_nan_last(1, nan) == -1
-    assert cmp_nan_last(nan, nan) == 0
-
-
-def test__cmp_nan_first():
-    nan = float('nan')
-    assert cmp_nan_first(nan, 1) == -1
-    assert cmp_nan_first(1, nan) == 1
-    assert cmp_nan_first(nan, nan) == 0
-    assert cmp_nan_first(1, 2) == 1
-    assert cmp_nan_first(2, 1) == -1
-
-
 @given(vals=st.lists(st.floats(allow_nan=False)))
 def test__merge_sorted_nan_last(vals):
     result = merge_sorted(list(vals) + [float('nan')], cmp=cmp_nan_last)
@@ -170,7 +151,7 @@ def test__quick_sorted_nan_first(vals):
     nan = float('nan')
     result = quick_sorted(list(vals) + [nan, nan], cmp=cmp_nan_first)
     assert all(math.isnan(x) for x in result[:2])
-    assert result[2:] == sorted(vals, reverse=True)
+    assert result[2:] == sorted(vals)
 
 
 def test__cmp_natural():
