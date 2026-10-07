@@ -64,7 +64,7 @@ def cmp_invert(cmp):
     >>> cmp_invert(cmp_standard)(523, 322)
     -1
     >>> cmp_invert(cmp_invert(cmp_standard))(523, 322)
-    -1
+    1
     >>> cmp_invert(cmp_standard)(322, 322)
     0
     '''
