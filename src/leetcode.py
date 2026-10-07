@@ -24,7 +24,15 @@ def merge_intervals(intervals):
     [[0, 4]]
     >>> merge_intervals([])
     []
+
+    Hint: sorting the intervals by their start point brings overlapping
+    intervals next to each other, so a single left-to-right pass is
+    enough.  Whenever the next interval starts at or before the end of
+    the last merged one, extend it; otherwise start a new interval.
     '''
+    def key(interval):
+        # an interval is a [start, end] pair
+        return interval[0]
 
 
 def max_profit_assignment(difficulty, profit, worker):
@@ -44,7 +52,14 @@ def max_profit_assignment(difficulty, profit, worker):
     0
     >>> max_profit_assignment([1,2,3], [10,20,30], [3,3,3])
     90
+
+    Hint: zip difficulty with profit and sort the jobs by difficulty;
+    sort the workers as well.  Sweeping the two lists together, a worker
+    takes the largest profit among the jobs they can handle.
     '''
+    def key(job):
+        # a job is a (difficulty, profit) pair
+        return job[0]
 
 
 def rank_teams(votes):
@@ -64,7 +79,19 @@ def rank_teams(votes):
     'XWYZ'
     >>> rank_teams(["ZMNAGUEDSJYLBOPHRQICWFXTVK"])
     'ZMNAGUEDSJYLBOPHRQICWFXTVK'
+
+    Hint: build a table counts[team][i] = how many voters ranked that
+    team in position i.  Teams are then ordered by their count vector,
+    highest first, with the alphabet as the final tie-break.  Negating
+    the counts turns the descending order into an ordinary sort key.
     '''
+    # counts[team][i] is the number of voters who ranked `team`
+    # in position i -- fill this in before sorting.
+    counts = {}
+
+    def key(team):
+        # negated counts sort descending; the letter breaks ties
+        return tuple(-n for n in counts[team]) + (team,)
 
 
 def largest_number(nums):
@@ -83,7 +110,19 @@ def largest_number(nums):
     '0'
     >>> largest_number([1])
     '1'
+
+    Hint: compare two numbers as strings: a should come before b when
+    a + b is a larger number than b + a.  That is a comparison and not a
+    key, so wrap it with functools.cmp_to_key.  The all-zeros input must
+    come out as the single string '0'.
     '''
+    import functools
+
+    def cmp(a, b):
+        # a comes first when a+b is the larger number
+        if a + b > b + a:
+            return -1
+        return 1 if b + a > a + b else 0
 
 
 def max_ice_cream(costs, coins):
@@ -100,6 +139,10 @@ def max_ice_cream(costs, coins):
     0
     >>> max_ice_cream([1,6,3,1,2,5], 20)
     6
+
+    Hint: the bars do not interact, so buy the cheapest ones first.
+    Sort the costs and subtract from `coins` until it runs out; the
+    number of bars bought is the answer.
     '''
 
 
@@ -119,4 +162,11 @@ def two_city_sched_cost(costs):
     ...                      [184,139],[840,118],[577,469]])
     1859
 
+    Hint: fly everyone to city B as a baseline.  Moving one person to
+    city A changes the total by costA - costB, and exactly n people must
+    move, so sort by that difference and move the n smallest.
+
     '''
+    def key(cost):
+        # sort by the extra cost of choosing city A
+        return cost[0] - cost[1]
